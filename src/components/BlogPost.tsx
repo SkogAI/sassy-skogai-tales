@@ -24,7 +24,7 @@ const BlogPost = ({ title, excerpt, date, category, commentCount, featured = fal
 
   return (
     <Card 
-      className={`transition-all duration-300 hover:shadow-soft-glow cursor-pointer ${featured ? 'ring-2 ring-primary/20' : ''}`}
+      className={`transition-all duration-300 hover:shadow-magical-glow cursor-pointer hover-lift ${featured ? 'ring-2 ring-primary/20 bg-sparkle-gradient/5' : ''}`}
       onClick={handleClick}
     >
       <CardHeader className="pb-3">
@@ -32,7 +32,7 @@ const BlogPost = ({ title, excerpt, date, category, commentCount, featured = fal
           <Badge variant={featured ? "default" : "secondary"}>
             {category}
           </Badge>
-          {featured && <Badge variant="outline">✨ Featured</Badge>}
+          {featured && <Badge variant="outline" className="animate-shimmer bg-sparkle-gradient/20 border-accent/50">✨ Featured</Badge>}
         </div>
         <h3 className="font-serif text-xl font-bold text-foreground hover:text-primary transition-colors cursor-pointer">
           {title}
