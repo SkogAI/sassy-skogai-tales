@@ -38,6 +38,7 @@ const BlogFeed = () => {
               category={post.category}
               commentCount={getCommentCount(post.id)}
               featured={post.featured}
+              slug={post.slug}
             />
           ))}
         </div>
