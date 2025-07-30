@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ArrowLeft, Calendar, MessageCircle } from "lucide-react";
 
 const BlogPostPage = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [comments, setComments] = useState<BlogPost[]>([]);
@@ -19,7 +19,7 @@ const BlogPostPage = () => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      if (!slug) return;
+      if (!id) return;
       
       try {
         setLoading(true);
@@ -28,7 +28,7 @@ const BlogPostPage = () => {
         const { data: postData, error: postError } = await supabase
           .from('posts')
           .select('*')
-          .eq('slug', slug)
+          .eq('id', id)
           .eq('published', true)
           .maybeSingle();
 
@@ -40,7 +40,7 @@ const BlogPostPage = () => {
           .from('posts')
           .select('*')
           .eq('published', true)
-          .neq('slug', slug)
+          .neq('id', id)
           .order('created_at', { ascending: false })
           .limit(5);
 
@@ -55,7 +55,7 @@ const BlogPostPage = () => {
     };
 
     fetchPost();
-  }, [slug]);
+  }, [id]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
