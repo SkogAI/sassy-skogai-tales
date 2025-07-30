@@ -217,4 +217,4 @@ Fashion is art, darlings, and I am the masterpiece! 💋',
   'Royal Style',
   false,
   'royal-fashion-update-new-avatar-styles-drop'
-);
+);;
