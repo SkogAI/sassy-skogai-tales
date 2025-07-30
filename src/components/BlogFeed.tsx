@@ -2,7 +2,7 @@ import BlogPost from "./BlogPost";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 
 const BlogFeed = () => {
-  const { posts, loading, error, formatDate, getCommentCount } = useBlogPosts();
+  const { posts, loading, error, formatDate } = useBlogPosts();
 
   return (
     <section className="py-12 px-6">
@@ -36,7 +36,6 @@ const BlogFeed = () => {
               excerpt={post.excerpt}
               date={formatDate(post.created_at)}
               category={post.category}
-              commentCount={getCommentCount(post.id)}
               featured={post.featured}
               slug={post.id}
             />

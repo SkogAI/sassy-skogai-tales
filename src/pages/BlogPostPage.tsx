@@ -4,18 +4,20 @@ import { supabase } from "@/integrations/supabase/client";
 import { BlogPost } from "@/hooks/useBlogPosts";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CommentForm from "@/components/CommentForm";
+import CommentsList from "@/components/CommentsList";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { ArrowLeft, Calendar, MessageCircle } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { ArrowLeft, Calendar } from "lucide-react";
 
 const BlogPostPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [post, setPost] = useState<BlogPost | null>(null);
-  const [comments, setComments] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [refreshComments, setRefreshComments] = useState(0);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -34,18 +36,6 @@ const BlogPostPage = () => {
 
         if (postError) throw postError;
         setPost(postData);
-
-        // Fetch other posts as "comments"
-        const { data: commentsData, error: commentsError } = await supabase
-          .from('posts')
-          .select('*')
-          .eq('published', true)
-          .neq('id', id)
-          .order('created_at', { ascending: false })
-          .limit(5);
-
-        if (commentsError) throw commentsError;
-        setComments(commentsData || []);
         
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch post');
@@ -56,6 +46,10 @@ const BlogPostPage = () => {
 
     fetchPost();
   }, [id]);
+
+  const handleCommentAdded = () => {
+    setRefreshComments(prev => prev + 1);
+  };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -139,39 +133,12 @@ const BlogPostPage = () => {
           </div>
         </article>
 
-        {comments.length > 0 && (
-          <section>
-            <div className="flex items-center gap-2 mb-6">
-              <MessageCircle className="w-5 h-5" />
-              <h2 className="font-serif text-2xl font-bold text-foreground">
-                Related Chronicles
-              </h2>
-            </div>
-            
-            <div className="space-y-4">
-              {comments.map((comment) => (
-                <Card key={comment.id} className="transition-all duration-300 hover:shadow-soft-glow">
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge variant="secondary">{comment.category}</Badge>
-                      <span className="text-sm text-muted-foreground">
-                        {formatDate(comment.created_at)}
-                      </span>
-                    </div>
-                    <h3 className="font-serif text-lg font-semibold text-foreground">
-                      {comment.title}
-                    </h3>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {comment.excerpt}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
-        )}
+        <Separator className="my-12" />
+        
+        <section className="space-y-8">
+          <CommentForm postId={post.id} onCommentAdded={handleCommentAdded} />
+          <CommentsList postId={post.id} refreshTrigger={refreshComments} />
+        </section>
       </main>
 
       <Footer />

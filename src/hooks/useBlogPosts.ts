@@ -69,9 +69,20 @@ export const useBlogPosts = () => {
     });
   };
 
-  const getCommentCount = (postId: string) => {
-    // Placeholder for now - will implement comments later
-    return Math.floor(Math.random() * 50) + 1;
+  const getCommentCount = async (postId: string) => {
+    try {
+      const { count, error } = await supabase
+        .from('comments')
+        .select('*', { count: 'exact', head: true })
+        .eq('post_id', postId)
+        .eq('approved', true);
+
+      if (error) throw error;
+      return count || 0;
+    } catch (error) {
+      console.error('Error fetching comment count:', error);
+      return 0;
+    }
   };
 
 

@@ -1,20 +1,43 @@
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 interface BlogPostProps {
   title: string;
   excerpt: string;
   date: string;
   category: string;
-  commentCount: number;
   featured?: boolean;
   slug?: string;
 }
 
-const BlogPost = ({ title, excerpt, date, category, commentCount, featured = false, slug }: BlogPostProps) => {
+const BlogPost = ({ title, excerpt, date, category, featured = false, slug }: BlogPostProps) => {
   const navigate = useNavigate();
+  const [commentCount, setCommentCount] = useState(0);
+
+  useEffect(() => {
+    const fetchCommentCount = async () => {
+      if (!slug) return;
+      
+      try {
+        const { count, error } = await supabase
+          .from('comments')
+          .select('*', { count: 'exact', head: true })
+          .eq('post_id', slug)
+          .eq('approved', true);
+
+        if (error) throw error;
+        setCommentCount(count || 0);
+      } catch (error) {
+        console.error('Error fetching comment count:', error);
+      }
+    };
+
+    fetchCommentCount();
+  }, [slug]);
 
   const handleClick = () => {
     if (slug) {
