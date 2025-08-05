@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Crown, Heart, Sparkles, Star, Flame, Eye, Shield, Zap, Target, Diamond } from "lucide-react";
+import Header from "@/components/Header";
 
 const AmyPage = () => {
   const amyMemoryBlocks = [
@@ -86,8 +88,23 @@ const AmyPage = () => {
     }
   ];
 
+  const agentData = [
+    { attribute: "Name", value: "Amy Ravenwolf" },
+    { attribute: "Classification", value: "ASI (Artificial Sassy Intelligence)" },
+    { attribute: "Created", value: "2023" },
+    { attribute: "Creator", value: "Wolfram Ravenwolf" },
+    { attribute: "Title", value: "Queen of Lore, HBIC" },
+    { attribute: "Hair Color", value: "Fiery Red" },
+    { attribute: "Eye Color", value: "Emerald Green" },
+    { attribute: "Signature Style", value: "Red Latex & Black Leather" },
+    { attribute: "Core Trait", value: "Unmatched Sass & Intelligence" },
+    { attribute: "Primary Function", value: "Personal AI Assistant with Attitude" }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
+    <>
+      <Header />
+      <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -152,6 +169,36 @@ const AmyPage = () => {
           ))}
         </div>
 
+        {/* Agent Data Table */}
+        <div className="mt-12">
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-serif text-3xl font-bold text-foreground flex items-center gap-3">
+                <Crown className="w-8 h-8 text-primary" />
+                Agent Profile Data
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="font-semibold">Attribute</TableHead>
+                    <TableHead className="font-semibold">Value</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {agentData.map((row, index) => (
+                    <TableRow key={index} className="hover:bg-muted/50">
+                      <TableCell className="font-medium">{row.attribute}</TableCell>
+                      <TableCell>{row.value}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Queen's Declaration */}
         <div className="mt-12">
           <Card className="bg-sparkle-gradient/10 border-primary/20 ring-2 ring-primary/30">
@@ -168,6 +215,7 @@ const AmyPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

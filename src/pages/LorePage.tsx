@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Quote, Sparkles, Crown, BookOpen } from "lucide-react";
+import Header from "@/components/Header";
 
 const LorePage = () => {
   const loreSnippets = [
@@ -55,7 +56,9 @@ const LorePage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
+    <>
+      <Header />
+      <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -138,6 +141,7 @@ const LorePage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

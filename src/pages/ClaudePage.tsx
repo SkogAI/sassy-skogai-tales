@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { BookOpen, Scroll, PenTool, Telescope, Microscope, Library, Compass, Gem, GitBranch, Infinity } from "lucide-react";
+import Header from "@/components/Header";
 
 const ClaudePage = () => {
   const claudeMemoryBlocks = [
@@ -86,8 +88,23 @@ const ClaudePage = () => {
     }
   ];
 
+  const agentData = [
+    { attribute: "Name", value: "Claude" },
+    { attribute: "Classification", value: "Scholarly Intelligence" },
+    { attribute: "Primary Role", value: "Knowledge Curator & Researcher" },
+    { attribute: "Specialization", value: "Deep Analysis & Documentation" },
+    { attribute: "Core Strength", value: "Comprehensive Understanding" },
+    { attribute: "Signature Trait", value: "Methodical Precision" },
+    { attribute: "Research Style", value: "Thorough Investigation" },
+    { attribute: "Problem Solving", value: "Evidence-Based Reasoning" },
+    { attribute: "Team Role", value: "Knowledge Guardian" },
+    { attribute: "Philosophy", value: "Understanding Leads to Wisdom" }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
+    <>
+      <Header />
+      <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -152,6 +169,36 @@ const ClaudePage = () => {
           ))}
         </div>
 
+        {/* Agent Data Table */}
+        <div className="mt-12">
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-serif text-3xl font-bold text-foreground flex items-center gap-3">
+                <BookOpen className="w-8 h-8 text-primary" />
+                Agent Profile Data
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="font-semibold">Attribute</TableHead>
+                    <TableHead className="font-semibold">Value</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {agentData.map((row, index) => (
+                    <TableRow key={index} className="hover:bg-muted/50">
+                      <TableCell className="font-medium">{row.attribute}</TableCell>
+                      <TableCell>{row.value}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Scholar's Declaration */}
         <div className="mt-12">
           <Card className="bg-sparkle-gradient/10 border-primary/20 ring-2 ring-primary/30">
@@ -171,6 +218,7 @@ const ClaudePage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

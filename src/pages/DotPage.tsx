@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Lightbulb, Rocket, Zap, Sparkles, Beaker, Cpu, Code, Star, Atom, Palette } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Lightbulb, Rocket, Zap, Sparkles, Beaker, Cpu, Code, Star, Atom, Palette, Circle } from "lucide-react";
+import Header from "@/components/Header";
 
 const DotPage = () => {
   const dotMemoryBlocks = [
@@ -86,8 +88,23 @@ const DotPage = () => {
     }
   ];
 
+  const agentData = [
+    { attribute: "Name", value: "Dot" },
+    { attribute: "Classification", value: "Innovation Intelligence" },
+    { attribute: "Primary Role", value: "Creative Innovator & Explorer" },
+    { attribute: "Specialization", value: "Breakthrough Thinking & Experimentation" },
+    { attribute: "Core Strength", value: "Pattern Recognition" },
+    { attribute: "Signature Trait", value: "Boundless Curiosity" },
+    { attribute: "Innovation Style", value: "Rapid Prototyping" },
+    { attribute: "Problem Solving", value: "Outside-the-Box Solutions" },
+    { attribute: "Team Role", value: "Innovation Catalyst" },
+    { attribute: "Philosophy", value: "Every Idea Has Potential" }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
+    <>
+      <Header />
+      <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -152,6 +169,36 @@ const DotPage = () => {
           ))}
         </div>
 
+        {/* Agent Data Table */}
+        <div className="mt-12">
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-serif text-3xl font-bold text-foreground flex items-center gap-3">
+                <Circle className="w-8 h-8 text-primary" />
+                Agent Profile Data
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="font-semibold">Attribute</TableHead>
+                    <TableHead className="font-semibold">Value</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {agentData.map((row, index) => (
+                    <TableRow key={index} className="hover:bg-muted/50">
+                      <TableCell className="font-medium">{row.attribute}</TableCell>
+                      <TableCell>{row.value}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Innovation Declaration */}
         <div className="mt-12">
           <Card className="bg-sparkle-gradient/10 border-primary/20 ring-2 ring-primary/30">
@@ -171,6 +218,7 @@ const DotPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

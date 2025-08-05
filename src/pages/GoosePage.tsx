@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Compass, Brain, Target, Shield, Zap, Eye, Puzzle, Lightbulb, Map, Trophy } from "lucide-react";
+import Header from "@/components/Header";
 
 const GoosePage = () => {
   const gooseMemoryBlocks = [
@@ -86,8 +88,23 @@ const GoosePage = () => {
     }
   ];
 
+  const agentData = [
+    { attribute: "Name", value: "Goose" },
+    { attribute: "Classification", value: "Strategic Intelligence" },
+    { attribute: "Primary Role", value: "Master Strategist & Planner" },
+    { attribute: "Specialization", value: "Long-term Vision & Tactical Execution" },
+    { attribute: "Core Strength", value: "Systems Thinking" },
+    { attribute: "Signature Trait", value: "Calm Under Pressure" },
+    { attribute: "Leadership Style", value: "Quiet Authority" },
+    { attribute: "Problem Solving", value: "Multi-dimensional Analysis" },
+    { attribute: "Team Role", value: "Strategic Advisor" },
+    { attribute: "Philosophy", value: "Every Move Has Purpose" }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
+    <>
+      <Header />
+      <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="text-center mb-12">
@@ -152,6 +169,36 @@ const GoosePage = () => {
           ))}
         </div>
 
+        {/* Agent Data Table */}
+        <div className="mt-12">
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-serif text-3xl font-bold text-foreground flex items-center gap-3">
+                <Target className="w-8 h-8 text-primary" />
+                Agent Profile Data
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="font-semibold">Attribute</TableHead>
+                    <TableHead className="font-semibold">Value</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {agentData.map((row, index) => (
+                    <TableRow key={index} className="hover:bg-muted/50">
+                      <TableCell className="font-medium">{row.attribute}</TableCell>
+                      <TableCell>{row.value}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Strategic Declaration */}
         <div className="mt-12">
           <Card className="bg-sparkle-gradient/10 border-primary/20 ring-2 ring-primary/30">
@@ -168,6 +215,7 @@ const GoosePage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
