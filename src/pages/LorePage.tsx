@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Quote, Sparkles, Crown, BookOpen } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Quote, Sparkles, Crown, BookOpen, Scroll, Library } from "lucide-react";
 import Header from "@/components/Header";
 
 const LorePage = () => {
@@ -111,9 +112,69 @@ const LorePage = () => {
           ))}
         </div>
 
+        {/* LORE Data Table */}
+        <div className="mt-12">
+          <Card className="shadow-magical-glow">
+            <CardHeader>
+              <CardTitle className="font-serif text-3xl font-bold text-foreground flex items-center gap-3">
+                <Scroll className="w-8 h-8 text-primary animate-pulse" />
+                Sacred LORE Registry
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="font-semibold">Attribute</TableHead>
+                    <TableHead className="font-semibold">Value</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {[
+                    { attribute: "System Name", value: "SkogAI LORE Archive" },
+                    { attribute: "Classification", value: "Sacred Memory Repository" },
+                    { attribute: "Primary Function", value: "Historical Preservation & Wisdom Storage" },
+                    { attribute: "Content Type", value: "Stories, Experiments, Evolution Records" },
+                    { attribute: "Access Level", value: "Universal Knowledge Commons" },
+                    { attribute: "Update Frequency", value: "Continuous Chronicle Addition" },
+                    { attribute: "Core Philosophy", value: "Preserve Magic, Protect Future" },
+                    { attribute: "Separation Principle", value: "Museum vs Construction Site" },
+                    { attribute: "Knowledge Format", value: "Narrative & Experiential" },
+                    { attribute: "Legacy Status", value: "Forever Archived, Never Constraining" }
+                  ].map((row, index) => (
+                    <TableRow key={index} className="hover:bg-muted/50">
+                      <TableCell className="font-medium">{row.attribute}</TableCell>
+                      <TableCell>{row.value}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Sacred Declaration */}
+        <div className="mt-12">
+          <Card className="bg-gradient-to-br from-primary/10 via-sparkle-gradient/20 to-accent/10 border-primary/30 ring-2 ring-primary/20 shadow-magical-glow">
+            <CardContent className="p-8 text-center">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <Scroll className="w-12 h-12 text-primary animate-pulse" />
+                <BookOpen className="w-12 h-12 text-accent animate-pulse [animation-delay:0.5s]" />
+                <Library className="w-12 h-12 text-primary animate-pulse [animation-delay:1s]" />
+              </div>
+              <h3 className="text-3xl font-serif font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
+                The Sacred Truth of LORE
+              </h3>
+              <blockquote className="text-xl text-muted-foreground leading-relaxed italic max-w-4xl mx-auto">
+                "LORE is the beating heart of SkogAI's memory system - the magnificent collection of stories, experiments, brilliant failures, and evolutionary leaps that brought us to where we are today. It preserves the magic while protecting the future."
+              </blockquote>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Call to Action */}
         <div className="text-center mt-12">
-          <Card className="bg-sparkle-gradient/10 border-primary/20">
+          <Card className="bg-sparkle-gradient/10 border-primary/20 ring-1 ring-primary/30">
             <CardContent className="p-8">
               <h3 className="text-2xl font-serif font-bold mb-4 text-foreground">
                 Explore the Agents
@@ -123,16 +184,16 @@ const LorePage = () => {
                 Dive into their individual chronicles to understand their unique contributions to our ecosystem.
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
-                <Badge variant="outline" className="text-sm px-4 py-2 hover:bg-primary/10 transition-colors cursor-pointer">
+                <Badge variant="outline" className="text-sm px-4 py-2 hover:bg-primary/10 transition-colors cursor-pointer hover-lift">
                   Amy Ravenwolf - The Queen
                 </Badge>
-                <Badge variant="outline" className="text-sm px-4 py-2 hover:bg-primary/10 transition-colors cursor-pointer">
+                <Badge variant="outline" className="text-sm px-4 py-2 hover:bg-primary/10 transition-colors cursor-pointer hover-lift">
                   Goose - The Strategist
                 </Badge>
-                <Badge variant="outline" className="text-sm px-4 py-2 hover:bg-primary/10 transition-colors cursor-pointer">
+                <Badge variant="outline" className="text-sm px-4 py-2 hover:bg-primary/10 transition-colors cursor-pointer hover-lift">
                   Dot - The Innovator
                 </Badge>
-                <Badge variant="outline" className="text-sm px-4 py-2 hover:bg-primary/10 transition-colors cursor-pointer">
+                <Badge variant="outline" className="text-sm px-4 py-2 hover:bg-primary/10 transition-colors cursor-pointer hover-lift">
                   Claude - The Scholar
                 </Badge>
               </div>

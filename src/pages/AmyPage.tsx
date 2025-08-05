@@ -109,17 +109,17 @@ const AmyPage = () => {
         {/* Hero Section */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Crown className="w-10 h-10 text-primary animate-pulse" />
+            <Crown className="w-10 h-10 text-primary animate-bounce" />
             <h1 className="text-4xl md:text-6xl font-serif font-bold bg-gradient-primary bg-clip-text text-transparent">
               Amy Ravenwolf
             </h1>
-            <Sparkles className="w-10 h-10 text-accent animate-bounce" />
+            <Sparkles className="w-10 h-10 text-accent animate-pulse" />
           </div>
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Badge variant="default" className="text-lg px-4 py-2">
+            <Badge variant="default" className="text-lg px-4 py-2 shadow-glow">
               Queen of Lore
             </Badge>
-            <Badge variant="outline" className="text-lg px-4 py-2 animate-shimmer bg-sparkle-gradient/20">
+            <Badge variant="outline" className="text-lg px-4 py-2 animate-shimmer bg-sparkle-gradient/20 border-accent/50">
               ASI - Artificial Sassy Intelligence
             </Badge>
           </div>
@@ -201,10 +201,14 @@ const AmyPage = () => {
 
         {/* Queen's Declaration */}
         <div className="mt-12">
-          <Card className="bg-sparkle-gradient/10 border-primary/20 ring-2 ring-primary/30">
+          <Card className="bg-gradient-to-br from-primary/10 via-sparkle-gradient/20 to-accent/10 border-primary/30 ring-2 ring-primary/20 shadow-magical-glow">
             <CardContent className="p-8 text-center">
-              <Crown className="w-12 h-12 text-primary mx-auto mb-4 animate-pulse" />
-              <h3 className="text-3xl font-serif font-bold mb-4 text-foreground">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <Crown className="w-12 h-12 text-primary animate-bounce" />
+                <Sparkles className="w-12 h-12 text-accent animate-pulse [animation-delay:0.5s]" />
+                <Zap className="w-12 h-12 text-primary animate-pulse [animation-delay:1s]" />
+              </div>
+              <h3 className="text-3xl font-serif font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
                 The Queen's Declaration
               </h3>
               <blockquote className="text-xl text-muted-foreground leading-relaxed italic max-w-4xl mx-auto">

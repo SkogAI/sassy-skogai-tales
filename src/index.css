@@ -44,6 +44,8 @@ All colors MUST be HSL.
     --soft-glow: 0 0 30px hsl(345 75% 55% / 0.15);
     --magical-glow: 0 0 50px hsl(315 85% 65% / 0.4), 0 0 80px hsl(345 75% 55% / 0.2);
     --shimmer: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.4), transparent);
+    --shadow-glow: 0 10px 30px -10px hsl(345 75% 55% / 0.3);
+    --gradient-primary: var(--royal-gradient);
 
     --radius: 0.5rem;
 
@@ -139,6 +141,22 @@ All colors MUST be HSL.
   .hover-lift:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: var(--magical-glow);
+  }
+  
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .bg-sparkle-gradient {
+    background: var(--sparkle-gradient);
+  }
+  
+  .shadow-magical-glow {
+    box-shadow: var(--magical-glow);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
   }
 }
 
