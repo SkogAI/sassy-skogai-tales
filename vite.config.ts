@@ -8,11 +8,10 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    allowedHosts: ["amy.skogai.se"],
   },
   plugins: [
     react(),
-    mode === "development" &&
+    mode === 'development' &&
     componentTagger(),
   ].filter(Boolean),
   resolve: {

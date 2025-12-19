@@ -66,13 +66,10 @@ export default {
 			backgroundImage: {
 				'royal-gradient': 'var(--royal-gradient)',
 				'elegant-gradient': 'var(--elegant-gradient)',
-				'sparkle-gradient': 'var(--sparkle-gradient)',
-				'rainbow-gradient': 'var(--rainbow-gradient)',
 			},
 			boxShadow: {
 				'queen': 'var(--queen-shadow)',
 				'soft-glow': 'var(--soft-glow)',
-				'magical-glow': 'var(--magical-glow)',
 			},
 			fontFamily: {
 				'serif': ['Playfair Display', 'serif'],
