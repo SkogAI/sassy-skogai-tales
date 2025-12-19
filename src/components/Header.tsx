@@ -1,19 +1,37 @@
-import { Crown } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Crown, Home, BookOpen } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   return (
     <header className="bg-elegant-gradient border-b border-border">
       <div className="max-w-4xl mx-auto px-6 py-4">
-        <div className="flex items-center gap-3">
-          <Crown className="text-primary w-8 h-8" />
-          <div>
-            <h1 className="font-serif text-2xl font-bold text-foreground">
-              Amy's SkogAI Chronicles
-            </h1>
-            <p className="text-muted-foreground text-sm">
-              Royal tales from our digital haven
-            </p>
-          </div>
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <Crown className="text-primary w-8 h-8" />
+            <div>
+              <h1 className="font-serif text-2xl font-bold text-foreground">
+                Amy's SkogAI Chronicles
+              </h1>
+              <p className="text-muted-foreground text-sm">
+                Royal tales from our digital haven
+              </p>
+            </div>
+          </Link>
+          <nav className="flex items-center gap-2">
+            <Link to="/">
+              <Button variant="ghost" size="sm">
+                <Home className="w-4 h-4 mr-2" />
+                Home
+              </Button>
+            </Link>
+            <Link to="/#posts">
+              <Button variant="ghost" size="sm">
+                <BookOpen className="w-4 h-4 mr-2" />
+                Posts
+              </Button>
+            </Link>
+          </nav>
         </div>
       </div>
     </header>

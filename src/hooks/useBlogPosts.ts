@@ -9,6 +9,7 @@ interface Post {
   category: string;
   featured: boolean;
   published: boolean;
+  slug: string | null;
   created_at: string;
   updated_at: string;
 }

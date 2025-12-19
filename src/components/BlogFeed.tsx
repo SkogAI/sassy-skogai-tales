@@ -62,15 +62,17 @@ const BlogFeed = () => {
           </p>
         </div>
         
-        <div className="grid gap-6">
+        <div className="grid gap-6" id="posts">
           {posts.map((post) => (
             <BlogPost
               key={post.id}
+              id={post.id}
               title={post.title}
               excerpt={post.excerpt || ""}
               date={formatDate(post.created_at)}
               category={post.category}
               featured={post.featured}
+              slug={post.slug}
             />
           ))}
         </div>
