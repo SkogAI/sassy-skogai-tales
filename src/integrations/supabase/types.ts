@@ -7,10 +7,10 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "13.0.4"
+    PostgrestVersion: "14.1"
   }
   public: {
     Tables: {
@@ -45,15 +45,7 @@ export type Database = {
           post_id?: string
           updated_at?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "comments_post_id_fkey"
-            columns: ["post_id"]
-            isOneToOne: false
-            referencedRelation: "posts"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       posts: {
         Row: {
@@ -99,10 +91,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      slugify: {
-        Args: { text_input: string }
-        Returns: string
-      }
+      slugify: { Args: { text_input: string }; Returns: string }
     }
     Enums: {
       [_ in never]: never
