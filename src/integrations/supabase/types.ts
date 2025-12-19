@@ -14,37 +14,73 @@ export type Database = {
   }
   public: {
     Tables: {
+      comments: {
+        Row: {
+          approved: boolean
+          author_email: string
+          author_name: string
+          content: string
+          created_at: string
+          id: string
+          post_id: string
+          updated_at: string
+        }
+        Insert: {
+          approved?: boolean
+          author_email: string
+          author_name: string
+          content: string
+          created_at?: string
+          id?: string
+          post_id: string
+          updated_at?: string
+        }
+        Update: {
+          approved?: boolean
+          author_email?: string
+          author_name?: string
+          content?: string
+          created_at?: string
+          id?: string
+          post_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       posts: {
         Row: {
           category: string
-          content: string | null
+          content: string
           created_at: string
           excerpt: string | null
-          featured: boolean
+          featured: boolean | null
           id: string
-          published: boolean
+          published: boolean | null
+          slug: string | null
           title: string
           updated_at: string
         }
         Insert: {
           category?: string
-          content?: string | null
+          content: string
           created_at?: string
           excerpt?: string | null
-          featured?: boolean
+          featured?: boolean | null
           id?: string
-          published?: boolean
+          published?: boolean | null
+          slug?: string | null
           title: string
           updated_at?: string
         }
         Update: {
           category?: string
-          content?: string | null
+          content?: string
           created_at?: string
           excerpt?: string | null
-          featured?: boolean
+          featured?: boolean | null
           id?: string
-          published?: boolean
+          published?: boolean | null
+          slug?: string | null
           title?: string
           updated_at?: string
         }
@@ -55,7 +91,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      slugify: { Args: { text_input: string }; Returns: string }
     }
     Enums: {
       [_ in never]: never
