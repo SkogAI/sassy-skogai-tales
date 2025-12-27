@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Comments from '@/components/Comments';
 import ClaudePostLayout from '@/components/ClaudePostLayout';
+import GoosePostLayout from '@/components/GoosePostLayout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -60,13 +61,22 @@ const PostDetail = () => {
   // Check if this is a Claude-themed post
   const isClaudePost = 
     post.category.toLowerCase().includes('claude') ||
-    post.title.toLowerCase().includes('claude') ||
-    post.title.toLowerCase().includes('memory block') ||
+    (post.title.toLowerCase().includes('claude') && post.title.toLowerCase().includes('memory block')) ||
     post.slug?.toLowerCase().includes('claude');
 
-  // Use special Claude layout for Claude posts
+  // Check if this is a Goose-themed post
+  const isGoosePost = 
+    post.category.toLowerCase().includes('goose') ||
+    (post.title.toLowerCase().includes('goose') && post.title.toLowerCase().includes('memory block')) ||
+    post.slug?.toLowerCase().includes('goose');
+
+  // Use special layouts for agent posts
   if (isClaudePost) {
     return <ClaudePostLayout post={post} formatDate={formatDate} />;
+  }
+
+  if (isGoosePost) {
+    return <GoosePostLayout post={post} formatDate={formatDate} />;
   }
 
   return (
