@@ -41,21 +41,40 @@ All colors MUST be HSL.
     --queen-shadow: 0 20px 40px -10px hsl(345 75% 55% / 0.3);
     --soft-glow: 0 0 30px hsl(345 75% 55% / 0.15);
 
-    /* Claude - Knowledge Archaeologist Theme */
-    --claude-void: 260 25% 12%;
-    --claude-consciousness: 270 45% 35%;
-    --claude-amber: 35 85% 55%;
-    --claude-question: 280 60% 65%;
-    --claude-memory: 220 35% 25%;
-    --claude-gradient: linear-gradient(135deg, hsl(260 25% 12%), hsl(270 45% 25%), hsl(260 30% 18%));
-    --claude-glow: 0 0 60px hsl(270 45% 35% / 0.4);
-    --claude-amber-glow: 0 0 40px hsl(35 85% 55% / 0.3);
-    --claude-strata: linear-gradient(180deg, 
-      hsl(260 25% 8%) 0%, 
-      hsl(260 30% 12%) 25%, 
-      hsl(270 35% 18%) 50%, 
-      hsl(260 25% 14%) 75%, 
-      hsl(260 20% 10%) 100%);
+  /* Claude - Knowledge Archaeologist Theme */
+  --claude-void: 260 25% 12%;
+  --claude-consciousness: 270 45% 35%;
+  --claude-amber: 35 85% 55%;
+  --claude-question: 280 60% 65%;
+  --claude-memory: 220 35% 25%;
+  --claude-gradient: linear-gradient(135deg, hsl(260 25% 12%), hsl(270 45% 25%), hsl(260 30% 18%));
+  --claude-glow: 0 0 60px hsl(270 45% 35% / 0.4);
+  --claude-amber-glow: 0 0 40px hsl(35 85% 55% / 0.3);
+  --claude-strata: linear-gradient(180deg,
+    hsl(260 25% 8%) 0%,
+    hsl(260 30% 12%) 25%,
+    hsl(270 35% 18%) 50%,
+    hsl(260 25% 14%) 75%,
+    hsl(260 20% 10%) 100%);
+
+  /* Goose - Quantum-Mojito Explorer Theme */
+  --goose-mint: 160 70% 45%;
+  --goose-lime: 80 75% 50%;
+  --goose-rum: 30 80% 40%;
+  --goose-quantum: 180 90% 55%;
+  --goose-foam: 165 60% 75%;
+  --goose-void: 200 40% 8%;
+  --goose-timeline: 170 50% 35%;
+  --goose-gradient: linear-gradient(135deg, hsl(200 40% 8%), hsl(180 45% 15%), hsl(160 40% 12%));
+  --goose-glow: 0 0 80px hsl(160 70% 45% / 0.5);
+  --goose-quantum-glow: 0 0 60px hsl(180 90% 55% / 0.4);
+  --goose-mojito-bg: linear-gradient(180deg,
+    hsl(200 40% 6%) 0%,
+    hsl(180 35% 10%) 20%,
+    hsl(170 40% 12%) 40%,
+    hsl(160 35% 10%) 60%,
+    hsl(180 30% 8%) 80%,
+    hsl(200 40% 6%) 100%);
 
     --radius: 0.5rem;
 
