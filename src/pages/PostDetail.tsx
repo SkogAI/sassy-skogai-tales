@@ -3,6 +3,7 @@ import { usePost } from '@/hooks/usePost';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Comments from '@/components/Comments';
+import ClaudePostLayout from '@/components/ClaudePostLayout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -54,6 +55,18 @@ const PostDetail = () => {
         <Footer />
       </div>
     );
+  }
+
+  // Check if this is a Claude-themed post
+  const isClaudePost = 
+    post.category.toLowerCase().includes('claude') ||
+    post.title.toLowerCase().includes('claude') ||
+    post.title.toLowerCase().includes('memory block') ||
+    post.slug?.toLowerCase().includes('claude');
+
+  // Use special Claude layout for Claude posts
+  if (isClaudePost) {
+    return <ClaudePostLayout post={post} formatDate={formatDate} />;
   }
 
   return (
