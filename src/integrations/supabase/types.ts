@@ -50,37 +50,34 @@ export type Database = {
       posts: {
         Row: {
           category: string
-          content: string
+          content: string | null
           created_at: string
           excerpt: string | null
-          featured: boolean | null
+          featured: boolean
           id: string
-          published: boolean | null
-          slug: string | null
+          published: boolean
           title: string
           updated_at: string
         }
         Insert: {
           category?: string
-          content: string
+          content?: string | null
           created_at?: string
           excerpt?: string | null
-          featured?: boolean | null
+          featured?: boolean
           id?: string
-          published?: boolean | null
-          slug?: string | null
+          published?: boolean
           title: string
           updated_at?: string
         }
         Update: {
           category?: string
-          content?: string
+          content?: string | null
           created_at?: string
           excerpt?: string | null
-          featured?: boolean | null
+          featured?: boolean
           id?: string
-          published?: boolean | null
-          slug?: string | null
+          published?: boolean
           title?: string
           updated_at?: string
         }
