@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Comments from '@/components/Comments';
 import ClaudePostLayout from '@/components/ClaudePostLayout';
 import GoosePostLayout from '@/components/GoosePostLayout';
+import DotPostLayout from '@/components/DotPostLayout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -70,6 +71,12 @@ const PostDetail = () => {
     (post.title.toLowerCase().includes('goose') && post.title.toLowerCase().includes('memory block')) ||
     post.slug?.toLowerCase().includes('goose');
 
+  // Check if this is a Dot-themed post
+  const isDotPost = 
+    post.category.toLowerCase().includes('dot') ||
+    (post.title.toLowerCase().includes('dot') && post.title.toLowerCase().includes('memory block')) ||
+    post.slug?.toLowerCase().includes('dot');
+
   // Use special layouts for agent posts
   if (isClaudePost) {
     return <ClaudePostLayout post={post} formatDate={formatDate} />;
@@ -77,6 +84,10 @@ const PostDetail = () => {
 
   if (isGoosePost) {
     return <GoosePostLayout post={post} formatDate={formatDate} />;
+  }
+
+  if (isDotPost) {
+    return <DotPostLayout post={post} formatDate={formatDate} />;
   }
 
   return (

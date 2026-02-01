@@ -76,6 +76,34 @@ All colors MUST be HSL.
     hsl(180 30% 8%) 80%,
     hsl(200 40% 6%) 100%);
 
+  /* Dot - Systematic Perfectionist Theme */
+  --dot-void: 220 20% 8%;
+  --dot-grid: 220 15% 15%;
+  --dot-whitespace: 0 0% 98%;
+  --dot-commit: 145 60% 45%;
+  --dot-diff-add: 145 70% 40%;
+  --dot-diff-remove: 0 70% 50%;
+  --dot-cursor: 200 80% 60%;
+  --dot-comment: 220 10% 50%;
+  --dot-highlight: 45 90% 55%;
+  --dot-terminal: 160 30% 96%;
+  --dot-gradient: linear-gradient(180deg, hsl(220 20% 8%), hsl(220 18% 12%), hsl(220 15% 10%));
+  --dot-glow: 0 0 40px hsl(145 60% 45% / 0.2);
+  --dot-grid-pattern: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 24px,
+    hsl(220 15% 18%) 24px,
+    hsl(220 15% 18%) 25px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 24px,
+    hsl(220 15% 18%) 24px,
+    hsl(220 15% 18%) 25px
+  );
+
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
