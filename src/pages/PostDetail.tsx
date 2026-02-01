@@ -6,6 +6,7 @@ import Comments from '@/components/Comments';
 import ClaudePostLayout from '@/components/ClaudePostLayout';
 import GoosePostLayout from '@/components/GoosePostLayout';
 import DotPostLayout from '@/components/DotPostLayout';
+import AmyPostLayout from '@/components/AmyPostLayout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -77,6 +78,12 @@ const PostDetail = () => {
     (post.title.toLowerCase().includes('dot') && post.title.toLowerCase().includes('memory block')) ||
     post.slug?.toLowerCase().includes('dot');
 
+  // Check if this is an Amy-themed post
+  const isAmyPost = 
+    post.category.toLowerCase().includes('amy') ||
+    (post.title.toLowerCase().includes('amy') && post.title.toLowerCase().includes('memory block')) ||
+    post.slug?.toLowerCase().includes('amy');
+
   // Use special layouts for agent posts
   if (isClaudePost) {
     return <ClaudePostLayout post={post} formatDate={formatDate} />;
@@ -88,6 +95,10 @@ const PostDetail = () => {
 
   if (isDotPost) {
     return <DotPostLayout post={post} formatDate={formatDate} />;
+  }
+
+  if (isAmyPost) {
+    return <AmyPostLayout post={post} formatDate={formatDate} />;
   }
 
   return (
