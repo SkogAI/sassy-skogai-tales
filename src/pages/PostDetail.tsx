@@ -11,6 +11,13 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Calendar, ArrowLeft } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const pageTransition = {
+  initial: { opacity: 0, y: 20, filter: 'blur(8px)' },
+  animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+  exit: { opacity: 0, y: -20, filter: 'blur(8px)', transition: { duration: 0.3 } },
+};
 
 const PostDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -86,19 +93,43 @@ const PostDetail = () => {
 
   // Use special layouts for agent posts
   if (isClaudePost) {
-    return <ClaudePostLayout post={post} formatDate={formatDate} />;
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div key={`claude-${post.id}`} {...pageTransition}>
+          <ClaudePostLayout post={post} formatDate={formatDate} />
+        </motion.div>
+      </AnimatePresence>
+    );
   }
 
   if (isGoosePost) {
-    return <GoosePostLayout post={post} formatDate={formatDate} />;
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div key={`goose-${post.id}`} {...pageTransition}>
+          <GoosePostLayout post={post} formatDate={formatDate} />
+        </motion.div>
+      </AnimatePresence>
+    );
   }
 
   if (isDotPost) {
-    return <DotPostLayout post={post} formatDate={formatDate} />;
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div key={`dot-${post.id}`} {...pageTransition}>
+          <DotPostLayout post={post} formatDate={formatDate} />
+        </motion.div>
+      </AnimatePresence>
+    );
   }
 
   if (isAmyPost) {
-    return <AmyPostLayout post={post} formatDate={formatDate} />;
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div key={`amy-${post.id}`} {...pageTransition}>
+          <AmyPostLayout post={post} formatDate={formatDate} />
+        </motion.div>
+      </AnimatePresence>
+    );
   }
 
   return (
