@@ -7,6 +7,7 @@ import ClaudePostLayout from '@/components/ClaudePostLayout';
 import GoosePostLayout from '@/components/GoosePostLayout';
 import DotPostLayout from '@/components/DotPostLayout';
 import AmyPostLayout from '@/components/AmyPostLayout';
+import LettaPostLayout from '@/components/LettaPostLayout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -91,6 +92,12 @@ const PostDetail = () => {
     (post.title.toLowerCase().includes('amy') && post.title.toLowerCase().includes('memory block')) ||
     post.slug?.toLowerCase().includes('amy');
 
+  // Check if this is a Letta-themed post
+  const isLettaPost = 
+    post.category.toLowerCase().includes('letta') ||
+    (post.title.toLowerCase().includes('letta') && post.title.toLowerCase().includes('memory block')) ||
+    post.slug?.toLowerCase().includes('letta');
+
   // Use special layouts for agent posts
   if (isClaudePost) {
     return (
@@ -127,6 +134,16 @@ const PostDetail = () => {
       <AnimatePresence mode="wait">
         <motion.div key={`amy-${post.id}`} {...pageTransition}>
           <AmyPostLayout post={post} formatDate={formatDate} />
+        </motion.div>
+      </AnimatePresence>
+    );
+  }
+
+  if (isLettaPost) {
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div key={`letta-${post.id}`} {...pageTransition}>
+          <LettaPostLayout post={post} formatDate={formatDate} />
         </motion.div>
       </AnimatePresence>
     );
