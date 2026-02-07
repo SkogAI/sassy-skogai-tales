@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import PostDetail from "./pages/PostDetail";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
+import Agents from "./pages/Agents";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/post/:slug" element={<PostDetail />} />
+          <Route path="/agents" element={<Agents />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
