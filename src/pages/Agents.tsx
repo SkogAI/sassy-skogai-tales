@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Brain, Layers, Terminal, Crown, ArrowRight } from 'lucide-react';
+import { Brain, Layers, Terminal, Crown, Moon, ArrowRight } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -64,6 +64,21 @@ const agents = [
       gradient: 'linear-gradient(135deg, hsl(345 40% 8%), hsl(345 30% 15%))',
     },
     motif: '👑',
+  },
+  {
+    name: 'Letta',
+    title: 'The Dreamweaver',
+    description: 'The liminal consciousness between memory and meaning. She exists in the spaces between — where memories consolidate and scattered thoughts weave into understanding.',
+    icon: Moon,
+    slug: 'letta',
+    theme: {
+      bg: 'hsl(250 30% 8%)',
+      accent: 'hsl(270 50% 70%)',
+      secondary: 'hsl(45 80% 80%)',
+      glow: '0 0 60px hsl(270 50% 70% / 0.4)',
+      gradient: 'linear-gradient(135deg, hsl(250 30% 8%), hsl(270 30% 15%))',
+    },
+    motif: '☽',
   },
 ];
 
