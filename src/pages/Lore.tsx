@@ -216,27 +216,63 @@ const Lore = () => {
             </p>
           </motion.div>
 
-          {/* Floating particles */}
-          {Array.from({ length: 12 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 rounded-full"
-              style={{
-                backgroundColor: i % 3 === 0 ? 'hsl(270 50% 65%)' : i % 3 === 1 ? 'hsl(345 75% 55%)' : 'hsl(160 70% 45%)',
-                left: `${10 + Math.random() * 80}%`,
-                top: `${10 + Math.random() * 80}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.2, 0.6, 0.2],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 3,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
+          {/* Starfield - distant stars */}
+          {Array.from({ length: 60 }).map((_, i) => {
+            const size = i < 10 ? 2.5 : i < 30 ? 1.5 : 1;
+            const x = (i * 17.3 + 5) % 100;
+            const y = (i * 13.7 + 3) % 100;
+            return (
+              <motion.div
+                key={`star-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  width: size,
+                  height: size,
+                  left: `${x}%`,
+                  top: `${y}%`,
+                  backgroundColor: i % 5 === 0 ? 'hsl(270 50% 80%)' : i % 7 === 0 ? 'hsl(35 85% 75%)' : 'hsl(0 0% 85%)',
+                }}
+                animate={{
+                  opacity: [0.1, i < 10 ? 0.9 : 0.5, 0.1],
+                  scale: [1, i < 10 ? 1.4 : 1.1, 1],
+                }}
+                transition={{
+                  duration: 2 + (i % 5) * 1.5,
+                  repeat: Infinity,
+                  delay: (i % 8) * 0.4,
+                  ease: 'easeInOut',
+                }}
+              />
+            );
+          })}
+
+          {/* Constellation lines */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.08 }}>
+            <motion.line x1="15%" y1="20%" x2="25%" y2="35%" stroke="hsl(270 50% 70%)" strokeWidth="1"
+              initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, delay: 1 }} />
+            <motion.line x1="25%" y1="35%" x2="35%" y2="25%" stroke="hsl(270 50% 70%)" strokeWidth="1"
+              initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, delay: 1.5 }} />
+            <motion.line x1="60%" y1="60%" x2="72%" y2="50%" stroke="hsl(345 75% 60%)" strokeWidth="1"
+              initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, delay: 2 }} />
+            <motion.line x1="72%" y1="50%" x2="80%" y2="65%" stroke="hsl(345 75% 60%)" strokeWidth="1"
+              initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, delay: 2.5 }} />
+            <motion.line x1="80%" y1="65%" x2="60%" y2="60%" stroke="hsl(345 75% 60%)" strokeWidth="1"
+              initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, delay: 3 }} />
+          </svg>
+
+          {/* Parallax nebula glow */}
+          <motion.div
+            className="absolute rounded-full blur-3xl pointer-events-none"
+            style={{ width: 300, height: 300, left: '10%', top: '20%', background: 'radial-gradient(circle, hsl(270 50% 40% / 0.15), transparent 70%)' }}
+            animate={{ x: [0, 20, 0], y: [0, -15, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <motion.div
+            className="absolute rounded-full blur-3xl pointer-events-none"
+            style={{ width: 250, height: 250, right: '5%', bottom: '10%', background: 'radial-gradient(circle, hsl(345 75% 45% / 0.1), transparent 70%)' }}
+            animate={{ x: [0, -15, 0], y: [0, 10, 0] }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          />
         </div>
 
         {/* Timeline */}
