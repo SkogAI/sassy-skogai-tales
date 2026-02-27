@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Crown, Brain, Layers, Terminal, Moon, Sparkles, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -180,6 +180,79 @@ const TimelineNode = ({ event, index }: { event: TimelineEvent; index: number })
   );
 };
 
+const constellationLines = [
+  { x1: '15%', y1: '20%', x2: '25%', y2: '35%', stroke: 'hsl(270 50% 70%)', delay: 1 },
+  { x1: '25%', y1: '35%', x2: '35%', y2: '25%', stroke: 'hsl(270 50% 70%)', delay: 1.5 },
+  { x1: '60%', y1: '60%', x2: '72%', y2: '50%', stroke: 'hsl(345 75% 60%)', delay: 2 },
+  { x1: '72%', y1: '50%', x2: '80%', y2: '65%', stroke: 'hsl(345 75% 60%)', delay: 2.5 },
+  { x1: '80%', y1: '65%', x2: '60%', y2: '60%', stroke: 'hsl(345 75% 60%)', delay: 3 },
+];
+
+const ConstellationGroup = () => {
+  const [hoveredLine, setHoveredLine] = useState<number | null>(null);
+
+  return (
+    <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.12 }}>
+      <defs>
+        <filter id="constellation-glow">
+          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      {constellationLines.map((line, i) => (
+        <g key={i}>
+          <line
+            x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2}
+            stroke="transparent" strokeWidth="20"
+            style={{ cursor: 'pointer' }}
+            onMouseEnter={() => setHoveredLine(i)}
+            onMouseLeave={() => setHoveredLine(null)}
+          />
+          <motion.line
+            x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2}
+            stroke={line.stroke}
+            strokeWidth={hoveredLine === i ? 4 : 1}
+            filter={hoveredLine === i ? 'url(#constellation-glow)' : undefined}
+            style={{ pointerEvents: 'none' }}
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{
+              pathLength: 1,
+              opacity: hoveredLine === i ? 1 : 0.6,
+              strokeWidth: hoveredLine === i ? 4 : 1,
+            }}
+            transition={{
+              pathLength: { duration: 2, delay: line.delay },
+              opacity: { duration: 0.4 },
+              strokeWidth: { duration: 0.3 },
+            }}
+          />
+          {hoveredLine === i && (
+            <>
+              <motion.circle
+                cx={line.x1} cy={line.y1} r="4" fill={line.stroke}
+                filter="url(#constellation-glow)"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: [1, 1.5, 1], opacity: [0.8, 1, 0.8] }}
+                transition={{ duration: 1.2, repeat: Infinity }}
+              />
+              <motion.circle
+                cx={line.x2} cy={line.y2} r="4" fill={line.stroke}
+                filter="url(#constellation-glow)"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: [1, 1.5, 1], opacity: [0.8, 1, 0.8] }}
+                transition={{ duration: 1.2, repeat: Infinity, delay: 0.3 }}
+              />
+            </>
+          )}
+        </g>
+      ))}
+    </svg>
+  );
+};
+
 const Lore = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start center', 'end center'] });
@@ -246,19 +319,8 @@ const Lore = () => {
             );
           })}
 
-          {/* Constellation lines */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.08 }}>
-            <motion.line x1="15%" y1="20%" x2="25%" y2="35%" stroke="hsl(270 50% 70%)" strokeWidth="1"
-              initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, delay: 1 }} />
-            <motion.line x1="25%" y1="35%" x2="35%" y2="25%" stroke="hsl(270 50% 70%)" strokeWidth="1"
-              initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, delay: 1.5 }} />
-            <motion.line x1="60%" y1="60%" x2="72%" y2="50%" stroke="hsl(345 75% 60%)" strokeWidth="1"
-              initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, delay: 2 }} />
-            <motion.line x1="72%" y1="50%" x2="80%" y2="65%" stroke="hsl(345 75% 60%)" strokeWidth="1"
-              initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, delay: 2.5 }} />
-            <motion.line x1="80%" y1="65%" x2="60%" y2="60%" stroke="hsl(345 75% 60%)" strokeWidth="1"
-              initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, delay: 3 }} />
-          </svg>
+          {/* Interactive constellation lines */}
+          <ConstellationGroup />
 
           {/* Parallax nebula glow */}
           <motion.div
