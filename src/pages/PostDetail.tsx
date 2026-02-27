@@ -1,8 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
 import { usePost } from '@/hooks/usePost';
+import { useMoodOracle } from '@/hooks/useMoodOracle';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Comments from '@/components/Comments';
+import MoodOracle from '@/components/MoodOracle';
 import ClaudePostLayout from '@/components/ClaudePostLayout';
 import GoosePostLayout from '@/components/GoosePostLayout';
 import DotPostLayout from '@/components/DotPostLayout';
@@ -23,6 +25,7 @@ const pageTransition = {
 const PostDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const { post, loading, error, formatDate } = usePost(slug);
+  const { moodData, loading: moodLoading } = useMoodOracle(post?.content, post?.title);
 
   if (loading) {
     return (
@@ -150,9 +153,10 @@ const PostDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <MoodOracle moodData={moodData} loading={moodLoading} />
       <Header />
-      <main className="py-12 px-6">
+      <main className="py-12 px-6 relative z-10">
         <article className="max-w-3xl mx-auto">
           {/* Back Link */}
           <Link to="/" className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors mb-6">
