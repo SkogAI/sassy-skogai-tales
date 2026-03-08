@@ -55,10 +55,10 @@ export type Database = {
       posts: {
         Row: {
           category: string
-          content: string
+          content: string | null
           created_at: string
           excerpt: string | null
-          featured: boolean | null
+          featured: boolean
           id: string
           image_url: string | null
           metadata: Json | null
@@ -71,10 +71,10 @@ export type Database = {
         }
         Insert: {
           category?: string
-          content: string
+          content?: string | null
           created_at?: string
           excerpt?: string | null
-          featured?: boolean | null
+          featured?: boolean
           id?: string
           image_url?: string | null
           metadata?: Json | null
@@ -87,10 +87,10 @@ export type Database = {
         }
         Update: {
           category?: string
-          content?: string
+          content?: string | null
           created_at?: string
           excerpt?: string | null
-          featured?: boolean | null
+          featured?: boolean
           id?: string
           image_url?: string | null
           metadata?: Json | null
