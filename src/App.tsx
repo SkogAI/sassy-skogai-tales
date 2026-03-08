@@ -9,6 +9,7 @@ import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import Agents from "./pages/Agents";
 import Lore from "./pages/Lore";
+import Official from "./pages/Official";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/post/:slug" element={<PostDetail />} />
           <Route path="/agents" element={<Agents />} />
           <Route path="/lore" element={<Lore />} />
+          <Route path="/official" element={<Official />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Crown, Home, BookOpen, Shield, LogIn, LogOut, Users, Scroll } from "lucide-react";
+import { Crown, Home, BookOpen, Shield, LogIn, LogOut, Users, Scroll, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -44,6 +44,12 @@ const Header = () => {
               <Button variant="ghost" size="sm">
                 <Users className="w-4 h-4 mr-2" />
                 Agents
+              </Button>
+            </Link>
+            <Link to="/official">
+              <Button variant="ghost" size="sm">
+                <FileText className="w-4 h-4 mr-2" />
+                Official
               </Button>
             </Link>
             {isAdmin && (

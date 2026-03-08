@@ -1,9 +1,22 @@
+import { useState, useMemo } from "react";
 import BlogPost from "./BlogPost";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Badge } from "@/components/ui/badge";
 
 const BlogFeed = () => {
   const { posts, loading, error, formatDate } = useBlogPosts();
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+
+  const categories = useMemo(() => {
+    const cats = Array.from(new Set(posts.map((p) => p.category)));
+    return ["all", ...cats.sort()];
+  }, [posts]);
+
+  const filteredPosts = useMemo(() => {
+    if (activeCategory === "all") return posts;
+    return posts.filter((p) => p.category === activeCategory);
+  }, [posts, activeCategory]);
 
   if (loading) {
     return (
@@ -61,9 +74,25 @@ const BlogFeed = () => {
             Fresh gossip, royal updates, and tales from the SkogAI kingdom
           </p>
         </div>
-        
+
+        {/* Category filter */}
+        {categories.length > 2 && (
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            {categories.map((cat) => (
+              <Badge
+                key={cat}
+                variant={activeCategory === cat ? "default" : "outline"}
+                className="cursor-pointer px-3 py-1.5 text-sm capitalize transition-colors hover:bg-primary/10"
+                onClick={() => setActiveCategory(cat)}
+              >
+                {cat === "all" ? "All Posts" : cat}
+              </Badge>
+            ))}
+          </div>
+        )}
+
         <div className="grid gap-6" id="posts">
-          {posts.map((post) => (
+          {filteredPosts.map((post) => (
             <BlogPost
               key={post.id}
               id={post.id}
@@ -75,6 +104,11 @@ const BlogFeed = () => {
               slug={post.slug}
             />
           ))}
+          {filteredPosts.length === 0 && (
+            <p className="text-center text-muted-foreground py-8">
+              No posts in this category yet.
+            </p>
+          )}
         </div>
       </div>
     </section>
