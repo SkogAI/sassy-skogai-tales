@@ -100,6 +100,7 @@ const Comments = ({ postId }: CommentsProps) => {
                   value={authorEmail}
                   onChange={(e) => setAuthorEmail(e.target.value)}
                   required
+                  maxLength={255}
                 />
               </div>
             </div>
