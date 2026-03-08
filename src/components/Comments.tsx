@@ -113,6 +113,7 @@ const Comments = ({ postId }: CommentsProps) => {
                 placeholder="Share your thoughts..."
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
+                maxLength={5000}
                 rows={4}
                 required
                 maxLength={5000}

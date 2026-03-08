@@ -69,9 +69,10 @@ export const useComments = (postId: string | undefined) => {
 
       return true;
     } catch (err) {
+      console.error('Failed to submit comment:', err);
       toast({
         title: "Failed to submit comment",
-        description: err instanceof Error ? err.message : 'Please try again later.',
+        description: 'Unable to submit your comment. Please try again later.',
         variant: "destructive"
       });
       return false;

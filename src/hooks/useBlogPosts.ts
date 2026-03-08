@@ -30,7 +30,8 @@ export const useBlogPosts = () => {
         if (error) throw error;
         setPosts(data || []);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch posts');
+        console.error('Failed to fetch posts:', err);
+        setError('Failed to load posts. Please try again later.');
       } finally {
         setLoading(false);
       }
