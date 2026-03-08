@@ -6,17 +6,6 @@ import { Badge } from "@/components/ui/badge";
 
 const BlogFeed = () => {
   const { posts, loading, error, formatDate } = useBlogPosts();
-  const [activeCategory, setActiveCategory] = useState<string>("all");
-
-  const categories = useMemo(() => {
-    const cats = Array.from(new Set(posts.map((p) => p.category)));
-    return ["all", ...cats.sort()];
-  }, [posts]);
-
-  const filteredPosts = useMemo(() => {
-    if (activeCategory === "all") return posts;
-    return posts.filter((p) => p.category === activeCategory);
-  }, [posts, activeCategory]);
 
   if (loading) {
     return (
