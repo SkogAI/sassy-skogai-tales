@@ -88,6 +88,7 @@ const Comments = ({ postId }: CommentsProps) => {
                   value={authorName}
                   onChange={(e) => setAuthorName(e.target.value)}
                   required
+                  maxLength={100}
                 />
               </div>
               <div className="space-y-2">
