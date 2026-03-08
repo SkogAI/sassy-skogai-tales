@@ -9,6 +9,7 @@ import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import Agents from "./pages/Agents";
 import Lore from "./pages/Lore";
+import Official from "./pages/Official";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
