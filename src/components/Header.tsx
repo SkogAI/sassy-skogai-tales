@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Crown, Home, BookOpen, Shield, LogIn, LogOut, Users, Scroll } from "lucide-react";
+import { Crown, Home, BookOpen, Shield, LogIn, LogOut, Users, Scroll, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 
