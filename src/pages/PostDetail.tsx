@@ -102,6 +102,15 @@ const PostDetail = () => {
     (post.title.toLowerCase().includes('letta') && post.title.toLowerCase().includes('memory block')) ||
     post.slug?.toLowerCase().includes('letta');
 
+  // Check if this is an Official Documentation post
+  const isOfficialDoc = 
+    post.category.toLowerCase() === 'official documentation' ||
+    post.category.toLowerCase() === 'official' ||
+    post.category.toLowerCase().includes('dictator decision') ||
+    post.category.toLowerCase().includes('release declaration') ||
+    post.slug?.toLowerCase().includes('dictator-decision') ||
+    post.slug?.toLowerCase().includes('official');
+
   // Use special layouts for agent posts
   if (isClaudePost) {
     return (
