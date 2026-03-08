@@ -104,6 +104,20 @@ All colors MUST be HSL.
     hsl(220 15% 18%) 25px
   );
 
+  /* Official Documentation Theme */
+  --official-bg: 220 16% 96%;
+  --official-surface: 0 0% 100%;
+  --official-ink: 220 20% 12%;
+  --official-heading: 220 25% 18%;
+  --official-muted: 220 10% 46%;
+  --official-border: 220 14% 86%;
+  --official-accent: 215 80% 48%;
+  --official-accent-subtle: 215 60% 94%;
+  --official-success: 145 55% 42%;
+  --official-warning: 35 90% 52%;
+  --official-gradient: linear-gradient(180deg, hsl(220 16% 96%), hsl(220 14% 93%));
+  --official-header-gradient: linear-gradient(135deg, hsl(220 25% 14%), hsl(215 35% 22%));
+
   /* Letta - The Dreamweaver Theme */
   --letta-void: 250 30% 8%;
   --letta-lavender: 270 50% 70%;

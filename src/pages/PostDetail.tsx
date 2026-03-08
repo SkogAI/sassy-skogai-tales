@@ -10,6 +10,7 @@ import GoosePostLayout from '@/components/GoosePostLayout';
 import DotPostLayout from '@/components/DotPostLayout';
 import AmyPostLayout from '@/components/AmyPostLayout';
 import LettaPostLayout from '@/components/LettaPostLayout';
+import OfficialDocPostLayout from '@/components/OfficialDocPostLayout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -101,6 +102,15 @@ const PostDetail = () => {
     (post.title.toLowerCase().includes('letta') && post.title.toLowerCase().includes('memory block')) ||
     post.slug?.toLowerCase().includes('letta');
 
+  // Check if this is an Official Documentation post
+  const isOfficialDoc = 
+    post.category.toLowerCase() === 'official documentation' ||
+    post.category.toLowerCase() === 'official' ||
+    post.category.toLowerCase().includes('dictator decision') ||
+    post.category.toLowerCase().includes('release declaration') ||
+    post.slug?.toLowerCase().includes('dictator-decision') ||
+    post.slug?.toLowerCase().includes('official');
+
   // Use special layouts for agent posts
   if (isClaudePost) {
     return (
@@ -147,6 +157,16 @@ const PostDetail = () => {
       <AnimatePresence mode="wait">
         <motion.div key={`letta-${post.id}`} {...pageTransition}>
           <LettaPostLayout post={post} formatDate={formatDate} />
+        </motion.div>
+      </AnimatePresence>
+    );
+  }
+
+  if (isOfficialDoc) {
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div key={`official-${post.id}`} {...pageTransition}>
+          <OfficialDocPostLayout post={post} formatDate={formatDate} />
         </motion.div>
       </AnimatePresence>
     );
