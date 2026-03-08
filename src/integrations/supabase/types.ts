@@ -14,136 +14,16 @@ export type Database = {
   }
   public: {
     Tables: {
-      comments: {
-        Row: {
-          approved: boolean | null
-          author_email: string
-          author_name: string
-          content: string
-          created_at: string
-          id: string
-          post_id: string
-        }
-        Insert: {
-          approved?: boolean | null
-          author_email: string
-          author_name: string
-          content: string
-          created_at?: string
-          id?: string
-          post_id: string
-        }
-        Update: {
-          approved?: boolean | null
-          author_email?: string
-          author_name?: string
-          content?: string
-          created_at?: string
-          id?: string
-          post_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "comments_post_id_fkey"
-            columns: ["post_id"]
-            isOneToOne: false
-            referencedRelation: "posts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      posts: {
-        Row: {
-          category: string
-          content: string | null
-          created_at: string
-          excerpt: string | null
-          featured: boolean
-          id: string
-          image_url: string | null
-          metadata: Json | null
-          parent_post_id: string | null
-          published: boolean | null
-          slug: string | null
-          sort_order: number | null
-          title: string
-          updated_at: string
-        }
-        Insert: {
-          category?: string
-          content?: string | null
-          created_at?: string
-          excerpt?: string | null
-          featured?: boolean
-          id?: string
-          image_url?: string | null
-          metadata?: Json | null
-          parent_post_id?: string | null
-          published?: boolean | null
-          slug?: string | null
-          sort_order?: number | null
-          title: string
-          updated_at?: string
-        }
-        Update: {
-          category?: string
-          content?: string | null
-          created_at?: string
-          excerpt?: string | null
-          featured?: boolean
-          id?: string
-          image_url?: string | null
-          metadata?: Json | null
-          parent_post_id?: string | null
-          published?: boolean | null
-          slug?: string | null
-          sort_order?: number | null
-          title?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "posts_parent_post_id_fkey"
-            columns: ["parent_post_id"]
-            isOneToOne: false
-            referencedRelation: "posts"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      user_roles: {
-        Row: {
-          id: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Insert: {
-          id?: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Update: {
-          id?: string
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id?: string
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      has_role: {
-        Args: {
-          _role: Database["public"]["Enums"]["app_role"]
-          _user_id: string
-        }
-        Returns: boolean
-      }
+      [_ in never]: never
     }
     Enums: {
-      app_role: "admin" | "user"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -270,8 +150,6 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {
-      app_role: ["admin", "user"],
-    },
+    Enums: {},
   },
 } as const
