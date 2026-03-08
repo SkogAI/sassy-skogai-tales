@@ -48,16 +48,6 @@ export const useComments = (postId: string | undefined) => {
   const submitComment = async (authorName: string, authorEmail: string, content: string) => {
     if (!postId) return false;
 
-    // Client-side length validation
-    if (authorName.length > 100 || authorEmail.length > 254 || content.length > 5000) {
-      toast({
-        title: "Validation error",
-        description: "Please ensure all fields are within the allowed length limits.",
-        variant: "destructive"
-      });
-      return false;
-    }
-
     setSubmitting(true);
     try {
       const { error } = await supabase
@@ -79,10 +69,9 @@ export const useComments = (postId: string | undefined) => {
 
       return true;
     } catch (err) {
-      console.error('Failed to submit comment:', err);
       toast({
         title: "Failed to submit comment",
-        description: 'Unable to submit your comment. Please try again later.',
+        description: err instanceof Error ? err.message : 'Please try again later.',
         variant: "destructive"
       });
       return false;
