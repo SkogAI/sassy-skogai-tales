@@ -60,8 +60,12 @@ export type Database = {
           excerpt: string | null
           featured: boolean | null
           id: string
+          image_url: string | null
+          metadata: Json | null
+          parent_post_id: string | null
           published: boolean | null
           slug: string | null
+          sort_order: number | null
           title: string
           updated_at: string
         }
@@ -72,8 +76,12 @@ export type Database = {
           excerpt?: string | null
           featured?: boolean | null
           id?: string
+          image_url?: string | null
+          metadata?: Json | null
+          parent_post_id?: string | null
           published?: boolean | null
           slug?: string | null
+          sort_order?: number | null
           title: string
           updated_at?: string
         }
@@ -84,12 +92,24 @@ export type Database = {
           excerpt?: string | null
           featured?: boolean | null
           id?: string
+          image_url?: string | null
+          metadata?: Json | null
+          parent_post_id?: string | null
           published?: boolean | null
           slug?: string | null
+          sort_order?: number | null
           title?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "posts_parent_post_id_fkey"
+            columns: ["parent_post_id"]
+            isOneToOne: false
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
