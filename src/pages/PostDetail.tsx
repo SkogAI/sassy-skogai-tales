@@ -162,6 +162,16 @@ const PostDetail = () => {
     );
   }
 
+  if (isOfficialDoc) {
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div key={`official-${post.id}`} {...pageTransition}>
+          <OfficialDocPostLayout post={post} formatDate={formatDate} />
+        </motion.div>
+      </AnimatePresence>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background relative">
       <MoodOracle moodData={moodData} loading={moodLoading} />
