@@ -87,6 +87,7 @@ const Comments = ({ postId }: CommentsProps) => {
                   placeholder="Your name"
                   value={authorName}
                   onChange={(e) => setAuthorName(e.target.value)}
+                  maxLength={100}
                   required
                   maxLength={100}
                 />
@@ -99,6 +100,7 @@ const Comments = ({ postId }: CommentsProps) => {
                   placeholder="your@email.com"
                   value={authorEmail}
                   onChange={(e) => setAuthorEmail(e.target.value)}
+                  maxLength={254}
                   required
                   maxLength={255}
                 />
@@ -111,6 +113,7 @@ const Comments = ({ postId }: CommentsProps) => {
                 placeholder="Share your thoughts..."
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
+                maxLength={5000}
                 rows={4}
                 required
                 maxLength={5000}

@@ -51,7 +51,8 @@ export const usePost = (slug: string | undefined) => {
         if (error) throw error;
         setPost(data);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch post');
+        console.error('Failed to fetch post:', err);
+        setError('Unable to load this post. Please try again later.');
       } finally {
         setLoading(false);
       }
