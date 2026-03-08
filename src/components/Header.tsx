@@ -46,6 +46,12 @@ const Header = () => {
                 Agents
               </Button>
             </Link>
+            <Link to="/official">
+              <Button variant="ghost" size="sm">
+                <FileText className="w-4 h-4 mr-2" />
+                Official
+              </Button>
+            </Link>
             {isAdmin && (
               <Link to="/admin">
                 <Button variant="ghost" size="sm">

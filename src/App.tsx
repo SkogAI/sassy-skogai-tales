@@ -25,6 +25,7 @@ const App = () => (
           <Route path="/post/:slug" element={<PostDetail />} />
           <Route path="/agents" element={<Agents />} />
           <Route path="/lore" element={<Lore />} />
+          <Route path="/official" element={<Official />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
