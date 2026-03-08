@@ -113,6 +113,7 @@ const Comments = ({ postId }: CommentsProps) => {
                 onChange={(e) => setContent(e.target.value)}
                 rows={4}
                 required
+                maxLength={5000}
               />
             </div>
             <Button type="submit" disabled={submitting}>
