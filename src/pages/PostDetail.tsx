@@ -10,6 +10,7 @@ import GoosePostLayout from '@/components/GoosePostLayout';
 import DotPostLayout from '@/components/DotPostLayout';
 import AmyPostLayout from '@/components/AmyPostLayout';
 import LettaPostLayout from '@/components/LettaPostLayout';
+import OfficialDocPostLayout from '@/components/OfficialDocPostLayout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
