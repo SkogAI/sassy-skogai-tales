@@ -88,6 +88,7 @@ const Comments = ({ postId }: CommentsProps) => {
                   value={authorName}
                   onChange={(e) => setAuthorName(e.target.value)}
                   required
+                  maxLength={100}
                 />
               </div>
               <div className="space-y-2">
@@ -99,6 +100,7 @@ const Comments = ({ postId }: CommentsProps) => {
                   value={authorEmail}
                   onChange={(e) => setAuthorEmail(e.target.value)}
                   required
+                  maxLength={255}
                 />
               </div>
             </div>
@@ -111,6 +113,7 @@ const Comments = ({ postId }: CommentsProps) => {
                 onChange={(e) => setContent(e.target.value)}
                 rows={4}
                 required
+                maxLength={5000}
               />
             </div>
             <Button type="submit" disabled={submitting}>

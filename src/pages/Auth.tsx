@@ -55,9 +55,13 @@ const Auth = () => {
         });
       }
     } catch (error) {
+      const genericMessage = isLogin
+        ? 'Invalid email or password. Please try again.'
+        : 'Unable to create account. Please try again.';
+      console.error('Auth error:', error);
       toast({
-        title: 'Error',
-        description: error instanceof Error ? error.message : 'An error occurred',
+        title: 'Authentication failed',
+        description: genericMessage,
         variant: 'destructive'
       });
     } finally {
