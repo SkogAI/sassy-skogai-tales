@@ -87,6 +87,7 @@ const Comments = ({ postId }: CommentsProps) => {
                   placeholder="Your name"
                   value={authorName}
                   onChange={(e) => setAuthorName(e.target.value)}
+                  maxLength={100}
                   required
                   maxLength={100}
                 />
